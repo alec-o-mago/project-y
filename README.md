@@ -2,6 +2,7 @@
 
 This is a parody of X/Twitter made as a portfolio project.
 
-## How to Run
+## Information
 
-Find the README.md on `/frontend` and `/backend` folders for instruction on how to run them.
+- Find information about the Frontend side [here](frontend/README.md).
+- Find information about the Backend side [here](backend/README.md).
