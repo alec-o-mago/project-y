@@ -1,7 +1,8 @@
 {
   "scripts": {
     "dev": "nodemon",
-    "test": "jest"
+    "test": "jest",
+    "start": "ts-node ./src/server.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

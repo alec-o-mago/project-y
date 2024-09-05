@@ -20,11 +20,19 @@ import {
 export default function Home() {
   const [postContent, setPostContent] = useState<string>('');
   const [posts, setPosts] = useState([]);
-  
+  const [token, setToken] = useState<string>('')
+  const [user, setUser] = useState<any>({})
   //const router = useRouter()
-  const token = sessionStorage?.getItem('authToken') ?? ''
-  console.log(sessionStorage.getItem('user'))
-  const user = JSON.parse(sessionStorage.getItem('user') ?? '{}')
+
+  useEffect(() => {
+    setToken(sessionStorage?.getItem('authToken') ?? '')
+    setUser(JSON.parse(sessionStorage.getItem('user') ?? '{}'))
+  }, []);
+
+  useEffect(() => {
+    //console.log("TOKEN: ",token)
+    fetchPosts();
+  },[token]);
 
   const timeAgo = (timestamp: string): string => {
     const givenDate = new Date(timestamp);
@@ -47,21 +55,13 @@ export default function Home() {
   const fetchPosts = async () => {
     try {
       const response = await getLast100Posts(token);
-      console.log('POSTS RESPONSE:\n',response)
+      // console.log('POSTS RESPONSE:\n',response)
       setPosts(response);
     } catch (error) {
       toast.error('Failed to fetch posts')
       // console.error('Failed to fetch posts:', error);
     }
   };
-
-  useEffect(() => {
-    //console.log("useffect(TOKEN): ",token)
-    
-    fetchPosts();
-    
-  },[token]);
-    
 
   const handlePostButton = async () => {
     await createPost(token, {content: postContent})
@@ -239,7 +239,7 @@ export default function Home() {
             <Button label="Start 14-day free trial"/>
           </div>
           <div className="border rounded-2xl border-zinc-500 p-3 my-3">
-            <div className="text-2xl font-semibold pb-4">What's Happening?</div>
+            <div className="text-2xl font-semibold pb-4">What&apos;s Happening?</div>
             This is a portfolio website that mimics X/Twitter.
             <br />
             Most buttons do not work, but posting and retrieving posts do work.
