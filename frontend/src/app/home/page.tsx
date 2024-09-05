@@ -70,7 +70,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-0 bg-zinc-950 [&_*]:transition [&_*]:duration-250 max-h-screen overflow-y-auto">
+    <main className="flex min-h-screen flex-col items-center p-0 bg-zinc-950 [&_*]:transition [&_*]:duration-250 max-h-screen overflow-hidden">
       <div className="max-w-7xl w-full min-h-screen p-0 m-0 lg:flex">
         <div className="w-full max-w-[275px] items-center justify-between font-mono p-1 lg:p-0 hidden lg:block">
           <div>
@@ -151,10 +151,10 @@ export default function Home() {
         <div className="w-full min-w-[600px] items-center justify-between font-mono p-1 lg:p-0 border-x border-zinc-500">
           <div className="flex justify-around">
             <div className="p-3 text-l w-full hover:bg-zinc-700 text-center flex justify-center">
-              <div className="border-b-4 border-blue-500">For You</div>
+              For You
             </div>
-            <div className="p-3 text-l w-full hover:bg-zinc-700 text-center">
-              Following
+            <div className="p-3 text-l w-full hover:bg-zinc-700 text-center flex justify-center">
+            <div className="border-b-4 border-blue-500">Following</div>
             </div>
           </div>
           <div className="border-y border-zinc-500 flex">
@@ -181,8 +181,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-          
-          <div className="overflow-y-auto max-h-[calc(100%-200px)]">
+
+          <div className="overflow-y-auto max-h-[calc(100%-205px)]">
             {/* POsts list here */}
             {posts.map((post:any,i:number)=>
               <div key={i} className="flex justify-left border-b border-zinc-500 m-0 p-1">
@@ -243,7 +243,7 @@ export default function Home() {
             <div className="text-2xl font-semibold pb-4">What&apos;s Happening?</div>
             This is a portfolio website that mimics X/Twitter.
             <br />
-            Most buttons do not work, but posting and retrieving posts do work.
+            Most buttons do not work, but you can post and see other people&apos;s posts.
           </div>
           <div className="border rounded-2xl border-zinc-500 p-3 my-3">
             <div className="text-2xl font-semibold pb-4">Who am I?</div>
