@@ -1,9 +1,9 @@
 'use client';
 // import Image from "next/image"; //
 import { useState, useEffect } from "react";
-import { useRouter } from 'next/navigation'
-import { parseCookies } from 'nookies';
-import axios from "axios";
+// import { useRouter } from 'next/navigation'
+// import { parseCookies } from 'nookies';
+// import axios from "axios";
 import Button from "@/components/button";
 import SearchBar from "@/components/search-bar";
 import { createPost, getLast100Posts } from '../../services/postService';
@@ -22,7 +22,7 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState<string>('')
   const [user, setUser] = useState<any>({})
-  //const router = useRouter()
+  // const router = useRouter()
 
   useEffect(() => {
     setToken(sessionStorage?.getItem('authToken') ?? '')
@@ -30,46 +30,47 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    //console.log("TOKEN: ",token)
+    // console.log("TOKEN: ",token)
     fetchPosts();
   },[token]);
 
   const timeAgo = (timestamp: string): string => {
-    const givenDate = new Date(timestamp);
-    const now = new Date();
-    const diffInSeconds = Math.floor((now.getTime() - givenDate.getTime()) / 1000);
+    const givenDate = new Date(timestamp)
+    const now = new Date()
+    const diffInSeconds = Math.floor((now.getTime() - givenDate.getTime()) / 1000)
     if (diffInSeconds < 60) {
-      return `${diffInSeconds}s`;
+      return `${diffInSeconds}s`
     }
-    const diffInMinutes = Math.floor(diffInSeconds / 60);
+    const diffInMinutes = Math.floor(diffInSeconds / 60)
     if (diffInMinutes < 60) {
-      return `${diffInMinutes}m`;
+      return `${diffInMinutes}m`
     }
-    const diffInHours = Math.floor(diffInMinutes / 60);
+    const diffInHours = Math.floor(diffInMinutes / 60)
     if (diffInHours < 24) {
-      return `${diffInHours}h`;
+      return `${diffInHours}h`
     }
-    return format(givenDate, 'MMM d');
+    return format(givenDate, 'MMM d')
   }
 
   const fetchPosts = async () => {
     try {
-      const response = await getLast100Posts(token);
+      const response = await getLast100Posts(token)
       // console.log('POSTS RESPONSE:\n',response)
-      setPosts(response);
+      setPosts(response)
     } catch (error) {
       toast.error('Failed to fetch posts')
-      // console.error('Failed to fetch posts:', error);
+      // console.error('Failed to fetch posts:', error)
     }
   };
 
   const handlePostButton = async () => {
     await createPost(token, {content: postContent})
+    setPostContent("")
     fetchPosts()
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-0 bg-zinc-950 [&_*]:transition [&_*]:duration-250">
+    <main className="flex min-h-screen flex-col items-center p-0 bg-zinc-950 [&_*]:transition [&_*]:duration-250 max-h-screen overflow-y-auto">
       <div className="max-w-7xl w-full min-h-screen p-0 m-0 lg:flex">
         <div className="w-full max-w-[275px] items-center justify-between font-mono p-1 lg:p-0 hidden lg:block">
           <div>
@@ -181,7 +182,7 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="overflow-scroll overscroll-contain">
+          <div className="overflow-y-auto max-h-[calc(100%-200px)]">
             {/* POsts list here */}
             {posts.map((post:any,i:number)=>
               <div key={i} className="flex justify-left border-b border-zinc-500 m-0 p-1">
