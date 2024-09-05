@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "dev": "nodemon",
     "test": "jest",
-    "start": "ts-node ./src/server.ts"
+    "start": "ts-node src/server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -25,7 +25,7 @@
     "@types/jest": "^29.5.12",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/multer": "^1.4.11",
-    "@types/node": "^22.5.0",
+    "@types/node": "^22.5.4",
     "@types/sequelize": "^4.28.20",
     "@types/supertest": "^6.0.2",
     "@types/swagger-jsdoc": "^6.0.4",
@@ -37,9 +37,9 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   },
-  "name": "backend",
+  "name": "project_y_backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server.ts",
   "keywords": [],
   "author": "",
   "license": "ISC",
